@@ -7,7 +7,7 @@ This API allows retailers to submit order data to RetailerHub. Both POST and PUT
 
 🌐 Base URL
 
-https://api.retailerhub.ai
+https://api.retailerhub.ai/api
 
 
 ⸻
