@@ -1,96 +1,76 @@
 # RetailerHub-API
-API specifications
+API Specifications
 
-📦 Order Ingestion API
+## Order Ingestion API
 
-This API allows retailers to submit order data to RetailerHub. Both POST and PUT endpoints support arbitrary JSON payloads. RetailerHub will map the incoming data to internal formats using custom mappers — no predefined schema is required.
-
-🌐 Base URL
-
+**Base URL**  
 https://api.retailerhub.ai/api
 
+**Authentication**  
+All requests must include this header:  
+`X-Api-Key`: API key provided by RetailerHub
 
-⸻
+---
 
-🔐 Authentication
+## Endpoints
 
-All requests must include the following header:
+### POST /v1/order
 
-Header	Description
-X-Api-Key	API key provided by RetailerHub
+**Description**  
+Ingest a new order by submitting any valid JSON payload. Stores the payload and triggers asynchronous order-creation workflows.
 
+**Request**  
+- **URL:** `POST /v1/order`  
+- **Headers:**  
+  - `X-Api-Key`: Your organization’s API key  
+- **Body:** Any JSON payload (no enforced schema)
 
-⸻
-
-📤 POST /v1/order
-
-Description
-
-Ingest a new order by submitting any valid JSON payload. This endpoint stores the payload and triggers asynchronous order creation workflows.
-
-Endpoint
-
-POST /v1/order
-
-Request
-	•	Body: Any JSON payload (no enforced schema)
-	•	Headers:
-	•	X-Api-Key: Your organization’s API key
-
-Example
-
+**Example**  
+```json
 {
   "orderId": "12345",
   "items": [
     { "sku": "ABC", "qty": 2 }
   ],
-  "customer": {
-    "name": "John Doe"
-  }
+  "customer": { "name": "John Doe" }
 }
+```
 
-Response
-	•	Status Code: 202 Accepted
-	•	Acknowledges receipt of the order for processing.
+**Response**  
+- **Status Code:** `202 Accepted`  
+- **Body:** Acknowledges receipt of the order for processing.
 
-⸻
+---
 
-🔁 PUT /v1/id/order
+### PUT /v1/{id}/order
 
-Description
+**Description**  
+Replace an existing order with a new full JSON object. Overwrites the entire existing object (no schema validation).
 
-Replace an existing order with a new full JSON object. This will overwrite the entire existing object. No schema validation is applied; your payload is passed through as-is.
+**Request**  
+- **URL:** `PUT /v1/{id}/order`  
+- **Headers:**  
+  - `X-Api-Key`: Your organization’s API key  
+- **Body:** Full JSON object (no schema restrictions)
 
-Endpoint
-
-PUT /v1/id/order
-
-Request
-	•	Body: Full JSON object (no schema restrictions)
-	•	Headers:
-	•	X-Api-Key: Your organization’s API key
-
-Example
-
+**Example**  
+```json
 {
   "orderId": "12345",
   "items": [
     { "sku": "XYZ", "qty": 1 }
   ],
-  "customer": {
-    "name": "Jane Smith"
-  }
+  "customer": { "name": "Jane Smith" }
 }
+```
 
-Response
-	•	Status Code: 202 Accepted
-	•	Confirms that the new order data has been received and will replace the original.
+**Response**  
+- **Status Code:** `202 Accepted`  
+- **Body:** Confirms receipt of the new order data and replacement of the original.
 
-⸻
+---
 
-🛡 Notes
-	•	Maximum payload size: 10 MB
-	•	Orders are processed asynchronously
-	•	Your API key must be kept secure and never shared publicly
-
-⸻
+## Notes
+- Maximum payload size: 10 MB  
+- Orders are processed asynchronously  
+- Keep your API key secure and never share it publicly
