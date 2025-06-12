@@ -23,7 +23,6 @@ Ingest a new order by submitting any valid JSON payload. Stores the payload and 
 - **URL:** `POST /v1/order`  
 - **Headers:**  
   - `X-Api-Key`: Your organization’s API key  
-- **Body:** Any JSON payload (no enforced schema)
 
 **Example**  
 ```json
