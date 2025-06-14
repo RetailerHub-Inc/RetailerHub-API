@@ -70,6 +70,6 @@ Replace an existing order with a new full JSON object. Overwrites the entire exi
 ---
 
 ## Notes
-- Maximum payload size: 10 MB  
+- Maximum payload size: 3 MB  
 - Orders are processed asynchronously  
 - Keep your API key secure and never share it publicly
