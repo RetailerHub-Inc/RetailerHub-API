@@ -44,7 +44,7 @@ Ingest a new order by submitting any valid JSON payload. Stores the payload and 
 ### PUT /v1/{id}/order
 
 **Description**  
-Replace an existing order with a new full JSON object. Overwrites the entire existing object (no schema validation).
+Captures a new state for a given order. Original order object is not overriden. This payload will be used to apply a set of changes to the existing order inside RetailerHub.
 
 **Request**  
 - **URL:** `PUT /v1/{id}/order`  
