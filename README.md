@@ -4,7 +4,7 @@ API Specifications
 ## Order Ingestion API
 
 **Base URL**  
-https://api.retailerhub.ai/api
+https://api.retailerhub.ai
 
 **Authentication**  
 All requests must include this header:  
